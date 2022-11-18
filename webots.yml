@@ -1,7 +1,7 @@
 publish: true
 type: benchmark
 world:
-  file: worlds/robot_programming.wbt
-  max-duration: 30
+  file: worlds/pit_escape.wbt
+  max-duration: 65
   metric: percent
-dockerCompose: theia:webots-project/controllers/edit_me/
+dockerCompose: theia:webots-project/controllers/pit_escape/
