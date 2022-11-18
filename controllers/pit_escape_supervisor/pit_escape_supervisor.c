@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+#include <webots/plugins/robot_window/default.h>
 #include <webots/robot.h>
 #include <webots/supervisor.h>
 #include <webots/types.h>
@@ -26,14 +27,16 @@
 
 #define MAX_TIME 60.0
 
-static double get_distance_from_center(WbNodeRef node) {
+static double get_distance_from_center(WbNodeRef node)
+{
   const double *position = wb_supervisor_node_get_position(node);
   const double distanceX = position[0] - CENTER_X;
   const double distanceZ = position[2] - CENTER_Z;
   return sqrt(distanceX * distanceX + distanceZ * distanceZ);
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
   char str_buffer[512];
 
   wb_robot_init();
@@ -48,7 +51,8 @@ int main(int argc, char **argv) {
   double metric = 0.0;
   double time = wb_robot_get_time();
 
-  while (wb_robot_step(time_step) != -1 && longest_distance < pit_radius && time < MAX_TIME) {
+  while (wb_robot_step(time_step) != -1 && longest_distance < pit_radius && time < MAX_TIME)
+  {
     double distance = get_distance_from_center(bb8_robot);
     if (distance > longest_distance)
       longest_distance = distance;
@@ -58,7 +62,8 @@ int main(int argc, char **argv) {
     time = wb_robot_get_time();
   }
 
-  if (longest_distance > pit_radius) {
+  if (longest_distance > pit_radius)
+  {
     metric = 0.5;
     if (time < MAX_TIME)
       metric += 0.5 * (MAX_TIME - time) / MAX_TIME;
@@ -68,9 +73,9 @@ int main(int argc, char **argv) {
   wb_robot_wwi_send_text(str_buffer);
 
   sprintf(str_buffer, "stop:%.2f", 100 * metric);
-    wb_robot_wwi_send_text(str_buffer);
+  wb_robot_wwi_send_text(str_buffer);
 
-    printf("performance:%f\n", metric);
+  printf("performance:%f\n", metric);
 
   wb_supervisor_simulation_set_mode(WB_SUPERVISOR_SIMULATION_MODE_PAUSE);
   wb_robot_cleanup();
