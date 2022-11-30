@@ -58,7 +58,7 @@ jobs:
           body: Evaluation finished! The [leaderboard](${{ env.LEADERBOARD_LINK }}) is up-to-date.
 
       - name: Feedback on failure
-        if: always() && ( steps.webots_test.outcome == 'failure' || steps.webots_test.outcome == 'cancelled' )
+        if: failure() || cancelled()
         uses: peter-evans/create-or-update-comment@v2.1.0
         with:
           comment-id: ${{ steps.feedback.outputs.comment-id }}

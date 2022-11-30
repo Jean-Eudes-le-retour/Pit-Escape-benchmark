@@ -105,11 +105,7 @@ jobs:
       - name: Adding the "pending" label if there was any problem
 
         id: if_error
-        if: >
-          always() && (
-            ( steps.invites_check.outcome == 'failure' || steps.benchmark_check.outcome == 'failure' ) ||
-            ( steps.invites_check.outcome == 'cancelled' || steps.benchmark_check.outcome == 'cancelled' )
-          )
+        if: failure() || cancelled()
         run: |
           gh api --silent \
             --method POST \
