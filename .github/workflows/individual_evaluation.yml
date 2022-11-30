@@ -33,7 +33,7 @@ jobs:
           echo "INPUT_INDIVIDUAL_EVALUATION=$solo_reference" >> $GITHUB_ENV
 
       - name: Record and update benchmark animation and performance score
-        timeout-minutes: 10
+        timeout-minutes: 1
         id: webots_test
         uses: cyberbotics/benchmark-record-action@main
         env:

@@ -14,7 +14,7 @@ jobs:
         contains(github.event.issue.labels.*.name, 'registration') &&
         contains(github.event.issue.labels.*.name, 'pending') &&
         github.event.issue.user.login == github.event.comment.user.login &&
-        github.event.comment.body, 'retry'
+        github.event.comment.body == 'retry'
       )
     runs-on: ubuntu-latest
     env:
@@ -81,7 +81,7 @@ jobs:
 
       - name: Evaluation of the repository's controller
 
-        timeout-minutes: 10
+        timeout-minutes: 1
         if: steps.repo_check.outcome == 'success' || steps.invites_check.outcome == 'success'
         id: benchmark_check
         uses: cyberbotics/benchmark-record-action@main
