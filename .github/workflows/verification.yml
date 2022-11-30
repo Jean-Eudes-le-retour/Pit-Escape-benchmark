@@ -64,13 +64,15 @@ jobs:
 
       - name: If no invites, problem with collab or link syntax
 
-        if: always() && steps.invites_check.outcome == 'failure'
+        if: failure() && steps.invites_check.outcome == 'failure'
         uses: peter-evans/create-or-update-comment@v2.1.0
         with:
           comment-id: ${{ steps.feedback.outputs.comment-id }}
           body: |
+            ---
             There was a problem when checking your repository "${{ env.USER_REPO }}".
             You haven't added the organizer as a collaborator or there is a typo in the link.
+            You can edit your message to change your GitHub link.
 
 # Second check | id: benchmark_check
 
@@ -91,11 +93,12 @@ jobs:
 
       - name: If not a benchmark repo, feedback on registration issue
 
-        if: always() && steps.benchmark_check.outcome == 'failure'
+        if: failure() && steps.benchmark_check.outcome == 'failure'
         uses: peter-evans/create-or-update-comment@v2.1.0
         with:
           comment-id: ${{ steps.feedback.outputs.comment-id }}
           body: |
+            ---
             There was a problem when checking your repository link.
             The automated evaluation of your controller failed, your repository seems misconfigured. Look at the action logs for more details:
             https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
@@ -104,7 +107,6 @@ jobs:
 
       - name: Adding the "pending" label if there was any problem
 
-        id: if_error
         if: failure() || cancelled()
         run: |
           gh api --silent \
@@ -115,11 +117,12 @@ jobs:
 
       - name: Prompt on how to retry
 
-        if: always() && steps.if_error.outcome == 'success'
+        if: failure() || cancelled()
         uses: peter-evans/create-or-update-comment@v2.1.0
         with:
           comment-id: ${{ steps.feedback.outputs.comment-id }}
-          body: >
+          body: |
+            ---
             There was a problem, please do the necessary to fix it.
             When you have finished solving the issue, please try again by commenting "retry"
 
