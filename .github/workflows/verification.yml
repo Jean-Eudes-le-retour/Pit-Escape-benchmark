@@ -67,7 +67,7 @@ jobs:
         if: always() && steps.invites_check.outcome == 'failure'
         uses: peter-evans/create-or-update-comment@v2.1.0
         with:
-          issue-number: ${{ github.event.issue.number }}
+          comment-id: ${{ steps.feedback.outputs.comment-id }}
           body: |
             There was a problem when checking your repository "${{ env.USER_REPO }}".
             You haven't added the organizer as a collaborator or there is a typo in the link.
@@ -94,7 +94,7 @@ jobs:
         if: always() && steps.benchmark_check.outcome == 'failure'
         uses: peter-evans/create-or-update-comment@v2.1.0
         with:
-          issue-number: ${{ github.event.issue.number }}
+          comment-id: ${{ steps.feedback.outputs.comment-id }}
           body: |
             There was a problem when checking your repository link.
             The automated evaluation of your controller failed, your repository seems misconfigured. Look at the action logs for more details:
