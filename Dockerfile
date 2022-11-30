@@ -1,5 +1,4 @@
-# TODO: change to cyberbotics/webots.cloud:R2023a when available
-FROM leoduggan/webots.cloud-anim-edit:latest
+FROM cyberbotics/webots.cloud:R2023a-ubuntu20.04
 
 # Copy all the benchmark files into a project directory (need to have the same name as the theia folder from webots.yml)
 RUN mkdir -p /usr/local/webots-project
