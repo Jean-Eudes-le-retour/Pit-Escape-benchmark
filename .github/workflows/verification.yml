@@ -87,7 +87,6 @@ jobs:
         env:
           INPUT_INDIVIDUAL_EVALUATION: "${{ github.event.issue.number }}:${{ env.USER_REPO }}"
           INPUT_REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
-        continue-on-error: true
 
       - name: If not a benchmark repo, feedback on registration issue
 

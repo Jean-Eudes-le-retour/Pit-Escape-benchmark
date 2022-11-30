@@ -39,7 +39,6 @@ jobs:
         env:
           INPUT_REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
           INPUT_ALLOW_PUSH: True
-        continue-on-error: true
 
       - name: Get leaderboard link
         if: ${{ steps.webots_test.outcome == 'success' }}
