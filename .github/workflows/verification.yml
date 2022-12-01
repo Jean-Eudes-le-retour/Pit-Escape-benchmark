@@ -69,18 +69,18 @@ jobs:
         with:
           comment-id: ${{ steps.feedback.outputs.comment-id }}
           body: |
-
+            
             ---
-
-            The script can't access the files inside the repository "${{ env.USER_REPO }}".
+            
+            :warning: **The script can't access the files inside the repository "${{ env.USER_REPO }}".** :warning:
             The reason could be that you haven't added the organizer as a collaborator or that there is a typo in the link.
-            You can edit your issue's text to change your GitHub link.
+            You can edit your issue's text to correct your GitHub link.
       
       - name: Create descriptive GitHub annotation
 
         if: failure() && steps.invites_check.outcome == 'failure'
         run: |
-          echo "::error file=${{ github.event.issue.html_url }}::The script can't access the files inside the repository \"${{ env.USER_REPO }}\". You haven't added the organizer as a collaborator or there is a typo in the link. You can edit your issue's text to change your GitHub link."
+          echo "::error ::The script can't access the files inside the repository \"${{ env.USER_REPO }}\""
 
 
 # Second check | id: benchmark_check
@@ -110,14 +110,14 @@ jobs:
             
             ---
 
-            There was a problem when checking your repository link.
-            The automated evaluation of your controller failed, your repository seems misconfigured. Look at the action logs for more details:
+            :warning: **The automated evaluation of your controller failed** :warning:
+            Your repository seems misconfigured. Look at the action logs for more details:
             https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
       - name: Create descriptive GitHub annotation
         if: failure() && steps.benchmark_check.outcome == 'failure'
         run: |
-          echo "::error file=${{ github.event.issue.html_url }}::There was a problem when checking your repository link. The automated evaluation of your controller failed, your repository seems misconfigured."
+          echo "::error ::The repository seems misconfigured."
 
 # If there was any problem:
 
