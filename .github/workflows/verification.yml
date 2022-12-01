@@ -70,9 +70,15 @@ jobs:
           comment-id: ${{ steps.feedback.outputs.comment-id }}
           body: |
             ---
-            There was a problem when checking your repository "${{ env.USER_REPO }}".
+            The script can't access the files inside the repository "${{ env.USER_REPO }}".
             You haven't added the organizer as a collaborator or there is a typo in the link.
             You can edit your message to change your GitHub link.
+      
+      - name: Create error description GitHub annotations
+
+        if: failure() && steps.invites_check.outcome == 'failure'
+        run: |
+          echo '::error file=${{ github.event.issue.body_path }}::The script can't access the files inside the repository "${{ env.USER_REPO }}".'
 
 # Second check | id: benchmark_check
 
