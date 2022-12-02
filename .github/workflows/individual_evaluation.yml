@@ -63,10 +63,7 @@ jobs:
         with:
           comment-id: ${{ steps.feedback.outputs.comment-id }}
           body: |
-            .
-            
-            ---
-            
+            ***
             There was a problem. Look at action logs for more details:
             https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
