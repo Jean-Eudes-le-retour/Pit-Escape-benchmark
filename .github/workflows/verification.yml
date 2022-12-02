@@ -69,12 +69,13 @@ jobs:
         with:
           comment-id: ${{ steps.feedback.outputs.comment-id }}
           body: |
+            .
             
             ---
             
             :warning: **The script can't access the files inside the repository "${{ env.USER_REPO }}".** :warning:
             The reason could be that you haven't added the organizer as a collaborator or that there is a typo in the link.
-            You can edit your issue's text to correct your GitHub link.
+            You can edit your issue's text to correct your GitHub link
       
       - name: Create descriptive GitHub annotation
 
@@ -107,9 +108,10 @@ jobs:
         with:
           comment-id: ${{ steps.feedback.outputs.comment-id }}
           body: |
+            .
             
             ---
-
+            
             :warning: **The automated evaluation of your controller failed** :warning:
             Your repository seems misconfigured. Look at the action logs for more details:
             https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
@@ -138,9 +140,10 @@ jobs:
         with:
           comment-id: ${{ steps.feedback.outputs.comment-id }}
           body: |
-
+            .
+            
             ---
-
+            
             There was a problem, please do the necessary to fix it.
             When you have finished solving the issue, please try again by commenting "retry"
 
@@ -187,6 +190,10 @@ jobs:
         with:
           comment-id: ${{ steps.feedback.outputs.comment-id }}
           body: |
+            .
+            
+            ---
+            
             #### Here comes a new challenger!
             You have been added to the benchmark [leaderboard](${{ env.LEADERBOARD_LINK }}).
 
