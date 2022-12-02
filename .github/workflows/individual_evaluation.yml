@@ -55,7 +55,9 @@ jobs:
         uses: peter-evans/create-or-update-comment@v2.1.0
         with:
           comment-id: ${{ steps.feedback.outputs.comment-id }}
-          body: Evaluation finished! The [leaderboard](${{ env.LEADERBOARD_LINK }}) is up-to-date.
+          body: |
+            ***
+            Evaluation finished! The [leaderboard](${{ env.LEADERBOARD_LINK }}) is up-to-date.
 
       - name: Feedback on failure
         if: failure() || cancelled()
