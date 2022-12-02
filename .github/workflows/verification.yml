@@ -90,10 +90,10 @@ jobs:
 
       - name: Evaluation of the repository's controller
 
-        timeout-minutes: 1
+        timeout-minutes: 10
         if: steps.repo_check.outcome == 'success' || steps.invites_check.outcome == 'success'
         id: benchmark_check
-        uses: cyberbotics/benchmark-record-action@enhancement-clearer-error-messages
+        uses: cyberbotics/benchmark-record-action@main
         env:
           INPUT_INDIVIDUAL_EVALUATION: "${{ github.event.issue.number }}:${{ env.USER_REPO }}"
           INPUT_REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
@@ -109,11 +109,6 @@ jobs:
             :warning: **The automated evaluation of your controller failed** :warning:
             Your repository seems misconfigured. Look at the action logs for more details:
             https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
-
-      - name: Create descriptive GitHub annotation
-        if: failure() && steps.benchmark_check.outcome == 'failure'
-        run: |
-          echo "::error ::The repository seems misconfigured."
 
 # If there was any problem:
 
@@ -136,7 +131,7 @@ jobs:
           body: |
             ***
             There was a problem, please do the necessary to fix it.
-            When you have finished solving the issue, please try again by commenting "retry"
+            When you have finished solving the issue, please try again by posting a comment below containing only the word "retry"
 
 # Else everything is in order:
 
@@ -181,8 +176,6 @@ jobs:
         with:
           comment-id: ${{ steps.feedback.outputs.comment-id }}
           body: |
-            ***
-            
             #### Here comes a new challenger!
             You have been added to the benchmark [leaderboard](${{ env.LEADERBOARD_LINK }}).
 
