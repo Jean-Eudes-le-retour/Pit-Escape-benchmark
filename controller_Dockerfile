@@ -20,8 +20,6 @@ ENV DEFAULT_CONTROLLER=${DEFAULT_CONTROLLER}
 # Copies all the files of the current folder into the docker container
 COPY . .
 
-RUN cd controllers/$DEFAULT_CONTROLLER
-
 # Entrypoint command to launch default Python controller script
 # (In shell form to allow variable expansion)
-CMD ./wait-for-it.sh 172.17.0.1:${PORT} -- python3 $DEFAULT_CONTROLLER.py
+CMD cd controllers/$DEFAULT_CONTROLLER && ../../wait-for-it.sh 172.17.0.1:${PORT} -- python3 $DEFAULT_CONTROLLER.py
