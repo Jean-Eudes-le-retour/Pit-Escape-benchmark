@@ -7,6 +7,7 @@ ENV PYTHONIOENCODING=UTF-8
 ENV LD_LIBRARY_PATH=${WEBOTS_HOME}/lib/controller:${LD_LIBRARY_PATH}
 
 # Default internal docker ip, used to connect controller to Webots
+ARG PORT
 ENV WEBOTS_CONTROLLER_URL=tcp://172.17.0.1:${PORT}
 
 # Copies all the files of the current folder into the docker container
