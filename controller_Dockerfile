@@ -21,4 +21,4 @@ ENV DEFAULT_CONTROLLER=${DEFAULT_CONTROLLER}
 
 # Entrypoint command to launch default Python controller script
 # (In shell form to allow variable expansion)
-CMD cd controllers/$DEFAULT_CONTROLLER && python3 $DEFAULT_CONTROLLER.py
+CMD ./wait-for-it.sh 172.17.0.1:${PORT} -- cd controllers/$DEFAULT_CONTROLLER && python3 $DEFAULT_CONTROLLER.py
