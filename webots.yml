@@ -4,4 +4,4 @@ world:
   file: worlds/pit_escape.wbt
   max-duration: 65
   metric: percent
-dockerCompose: theia:webots-project/controllers/pit_escape/
+dockerCompose: benchmark:webots-project/controllers/pit_escape/
