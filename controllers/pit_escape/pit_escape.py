@@ -1,8 +1,11 @@
 """Sample Webots controller for the pit escape benchmark."""
 
-from controller import Robot
-
-robot = Robot()
+try:
+    from controller import Robot
+    robot = Robot()
+except:
+    # launched with launcher.py
+    pass
 
 timestep = int(robot.getBasicTimeStep())
 

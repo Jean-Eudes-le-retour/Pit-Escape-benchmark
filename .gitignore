@@ -1,3 +1,4 @@
 .vscode
 controllers/pit_escape_supervisor/build/
 controllers/pit_escape/launch_controller.sh
+*.pyc
