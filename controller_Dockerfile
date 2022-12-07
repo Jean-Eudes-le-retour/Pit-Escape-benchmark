@@ -1,5 +1,8 @@
 FROM cyberbotics/webots.cloud:R2023a-ubuntu20.04
 
+# Project path used by the online tester's IDE
+ARG PROJECT_PATH=/usr/local/webots-project
+
 # Environment variables needed for Webots
 # https://cyberbotics.com/doc/guide/running-extern-robot-controllers#remote-extern-controllers
 ENV PYTHONPATH=${WEBOTS_HOME}/lib/controller/python
@@ -17,8 +20,8 @@ ARG DEFAULT_CONTROLLER
 ENV DEFAULT_CONTROLLER=${DEFAULT_CONTROLLER}
 
 # Copies all the files of the current folder into the docker container
-COPY . .
+COPY . ${PROJECT_PATH}
 
 # Entrypoint command to launch default Python controller script
 # (In shell form to allow variable expansion)
-CMD cd controllers/$DEFAULT_CONTROLLER && ./switch_exit_code.sh
+CMD cd ${PROJECT_PATH}/controllers/$DEFAULT_CONTROLLER && ./switch_exit_code.sh
