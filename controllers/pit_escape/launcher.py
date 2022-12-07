@@ -1,5 +1,5 @@
 from controller import Robot
 
-initialize_lib_controller = Robot()
+Robot()
 
 import pit_escape
