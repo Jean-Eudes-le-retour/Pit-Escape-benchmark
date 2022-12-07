@@ -9,11 +9,9 @@ ENV PROJECT_PATH=${PROJECT_PATH}
 ENV PYTHONPATH=${WEBOTS_HOME}/lib/controller/python
 ENV PYTHONIOENCODING=UTF-8
 ENV LD_LIBRARY_PATH=${WEBOTS_HOME}/lib/controller:${LD_LIBRARY_PATH}
-ENV WEBOTS_STDOUT_REDIRECT=1
-ENV WEBOTS_STDERR_REDIRECT=1
 
 # Default internal docker ip, used to connect controller to Webots
-ARG PORT=3005
+ARG PORT=1234
 ENV WEBOTS_CONTROLLER_URL=tcp://172.17.0.1:${PORT}
 
 # The default controller name is extracted from webots.yml and is given by the build-arg:
@@ -25,6 +23,8 @@ ENV DEFAULT_CONTROLLER=${DEFAULT_CONTROLLER}
 # Copies all the files of the current folder into the docker container
 COPY . ${PROJECT_PATH}
 
+WORKDIR ${PROJECT_PATH}/controllers/$DEFAULT_CONTROLLER
+
 # Entrypoint command to launch default Python controller script
 # (In shell form to allow variable expansion)
-CMD cd ${PROJECT_PATH}/controllers/$DEFAULT_CONTROLLER && ./switch_exit_code.sh
+CMD python3 launcher.py

@@ -9,9 +9,7 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        - WEBOTS_DEFAULT_IMAGE=$IMAGE
-        - PROJECT_PATH=$PROJECT_PATH
-        - MAKE=$MAKE
+        - PROJECT_PATH=/usr/local/webots-project
         - WORLD_PATH=webots-project/worlds/pit_escape.wbt
     command: webots --batch --stdout --stderr webots-project/worlds/pit_escape.wbt
     deploy:
@@ -45,16 +43,21 @@ services:
       dockerfile: controller_Dockerfile
       args:
         - DEFAULT_CONTROLLER=pit_escape
+        - PORT=3005
+        - PROJECT_PATH=/usr/local/webots-project
     deploy:
       resources:
         reservations:
           devices:
             - capabilities:
                 - gpu
+    tty: true # docker run -t
     environment:
       - QT_X11_NO_MITSHM=1
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=all
+      - WEBOTS_STDOUT_REDIRECT=1
+      - WEBOTS_STDERR_REDIRECT=1
 
 #  theia:
 #    image: benjamindeleze/theia-test:test3
