@@ -21,4 +21,4 @@ COPY . .
 
 # Entrypoint command to launch default Python controller script
 # (In shell form to allow variable expansion)
-CMD cd controllers/$DEFAULT_CONTROLLER && switch_exit_code.sh
+CMD cd controllers/$DEFAULT_CONTROLLER && ./switch_exit_code.sh
