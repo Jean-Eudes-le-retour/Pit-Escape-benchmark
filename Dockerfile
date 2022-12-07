@@ -2,6 +2,7 @@ FROM cyberbotics/webots.cloud:R2023a-ubuntu20.04
 
 # Project path used by the online tester's IDE
 ARG PROJECT_PATH=/usr/local/webots-project
+ENV PROJECT_PATH=${PROJECT_PATH}
 
 # Copy all the benchmark files into a project directory
 RUN mkdir -p ${PROJECT_PATH}
