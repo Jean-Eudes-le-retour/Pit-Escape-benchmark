@@ -1,11 +1,11 @@
 """Sample Webots controller for the pit escape benchmark."""
 
 try:
+    robot.getName()
+except:
+    # not launched with launcher.py
     from controller import Robot
     robot = Robot()
-except:
-    # launched with launcher.py
-    pass
 
 timestep = int(robot.getBasicTimeStep())
 
