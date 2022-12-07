@@ -24,6 +24,15 @@ pitchMotor.setVelocity(maxSpeed)
 forward = True
 lastTime = 0
 
+print(
+"""
+------------------------------------------
+Print test from external controller
+------------------------------------------
+"""
+)
+
+
 while robot.step(timestep) != -1:
     now = robot.getTime()
     # We check if enough time has elapsed.
