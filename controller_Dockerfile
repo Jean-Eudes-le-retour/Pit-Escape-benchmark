@@ -27,4 +27,4 @@ WORKDIR ${PROJECT_PATH}/controllers/$DEFAULT_CONTROLLER
 
 # Entrypoint command to launch default Python controller script
 # (In shell form to allow variable expansion)
-CMD python3 launcher.py
+CMD python3 $DEFAULT_CONTROLLER.py
