@@ -1,5 +1,6 @@
 from controller import Robot
 
-Robot()
+init = Robot()
+init.__del__()
 
 import pit_escape
