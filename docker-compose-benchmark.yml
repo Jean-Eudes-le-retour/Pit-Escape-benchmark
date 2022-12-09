@@ -45,6 +45,7 @@ services:
         - DEFAULT_CONTROLLER=pit_escape
         - PORT=3005
         - PROJECT_PATH=/usr/local/webots-project
+    #command: python3 /usr/local/webots-project/controllers/pit_escape/launcher.py
     deploy:
       resources:
         reservations:

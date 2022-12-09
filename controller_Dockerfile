@@ -23,8 +23,8 @@ ENV DEFAULT_CONTROLLER=${DEFAULT_CONTROLLER}
 # Copies all the files of the current folder into the docker container
 COPY . ${PROJECT_PATH}
 
-WORKDIR ${PROJECT_PATH}/controllers/$DEFAULT_CONTROLLER
+WORKDIR ${PROJECT_PATH}/controllers/${DEFAULT_CONTROLLER}
 
 # Entrypoint command to launch default Python controller script
 # (In shell form to allow variable expansion)
-CMD python3 launcher.py
+CMD python3 ${DEFAULT_CONTROLLER}.py
