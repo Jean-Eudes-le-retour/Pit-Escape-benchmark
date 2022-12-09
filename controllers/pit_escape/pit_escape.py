@@ -3,7 +3,7 @@
 
 from controller import Robot
 
-robot = Robot()
+robot1 = Robot()
 
 timestep = int(robot.getBasicTimeStep())
 
